@@ -1,0 +1,6 @@
+{
+  "name": "TrackFresh - Food With Origins",
+  "description": "Real-time crop & produce traceability platform powered by Google Firebase Firestore and Secure Authentication.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

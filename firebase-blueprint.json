@@ -1,0 +1,154 @@
+{
+  "entities": {
+    "Batch": {
+      "title": "Batch",
+      "description": "Traceable produce crop batch and custody log",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 64,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "product": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "variety": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "farm": {
+          "type": "string",
+          "maxLength": 150
+        },
+        "mandi": {
+          "type": "string",
+          "maxLength": 150
+        },
+        "quantity": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "grade": {
+          "type": "string",
+          "maxLength": 50
+        },
+        "registered": {
+          "type": "string",
+          "maxLength": 50
+        },
+        "condition": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "freshnessScore": {
+          "type": "number"
+        },
+        "temp": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "price": {
+          "type": "string",
+          "maxLength": 50
+        },
+        "createdByUid": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "createdByName": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "updatedAt": {
+          "type": "string",
+          "maxLength": 60
+        }
+      },
+      "required": ["id", "product", "farm", "mandi"]
+    },
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile with role and facility information",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "displayName": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "email": {
+          "type": "string",
+          "maxLength": 150
+        },
+        "photoURL": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "role": {
+          "type": "string",
+          "enum": ["mandi_admin", "driver", "retailer", "citizen"]
+        },
+        "facility": {
+          "type": "string",
+          "maxLength": 150
+        },
+        "updatedAt": {
+          "type": "string",
+          "maxLength": 60
+        }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "DefectReport": {
+      "title": "DefectReport",
+      "description": "Quality defect and produce spoilage warning log",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "batchId": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "defectType": {
+          "type": "string",
+          "maxLength": 150
+        },
+        "reportedBy": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "reportedByUid": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "timestamp": {
+          "type": "string",
+          "maxLength": 60
+        }
+      },
+      "required": ["id", "batchId", "defectType", "reportedByUid"]
+    }
+  },
+  "firestore": {
+    "/batches/{batchId}": {
+      "schema": "Batch",
+      "description": "Produce batches with traceability and custody logs."
+    },
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profiles with role permissions."
+    },
+    "/defects/{defectId}": {
+      "schema": "DefectReport",
+      "description": "Quality defect and spoilage reports."
+    }
+  }
+}
